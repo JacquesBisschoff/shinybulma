@@ -30,19 +30,31 @@ bulmaNav(target, ...)
 }
 \arguments{
 \item{...}{any element.}
+
+\item{transparent}{set to have transparent.}
+
+\item{color}{navbar color.}
+
+\item{fix.top, fix.bottom}{set one to have navbar fixed at top or bottom of page.}
+
+\item{label}{item label.}
+
+\item{href, target}{id of \code{bulmaNav} linked, \code{href} and \code{target} must be identical.}
 }
 \description{
 Add a responsive horizontal navbar.
 }
 \examples{
+if(interactive()){
 library(shiny)
-
 shinyApp(
   ui = bulmaPage(
    bulmaNavbar(
+     color = "primary",
      bulmaNavbarBrand(
        bulmaNavbarItem(
-         "shinybulma"
+         "shinybulma",
+         href = "Item 1"
        ),
        bulmaNavbarBurger()
      ),
@@ -53,21 +65,39 @@ shinyApp(
        bulmaNavbarItem(
          "Item 2"
        ),
-     bulmaNavbarDropdown(
-       label = "Drop-down",
        bulmaNavbarItem(
-         "Select 1"
-       ),
-       bulmaNavbarItem(
-         "Select 2"
+         "Item 3"
        )
-     )
     )
    ),
    bulmaNav(
      "Item 1",
      bulmaContainer(
        bulmaTitle("Item 1"),
+       bulmaTabs(
+       tabs = c("Tab 1", "Tab 2", "Tab 3"),
+       center = TRUE,
+         bulmaTab(
+           "Tab 1",
+           bulmaTitle("Tab 1")
+         ),
+         bulmaTab(
+           "Tab 2",
+           bulmaTitle("Tab 2"),
+           plotOutput("hist")
+         ),
+         bulmaTab(
+           "Tab 3",
+           bulmaTitle("Tab 3")
+         )
+       )
+     )
+   ),
+   bulmaNav(
+     "Item 2",
+     bulmaContainer(
+       bulmaTitle("Item 2"),
+       plotOutput("plot2"),
        bulmaTabs(
        tabs = c("Tab 1", "Tab 2", "Tab 3"),
        center = TRUE,
@@ -88,10 +118,9 @@ shinyApp(
      )
    ),
    bulmaNav(
-     "Item 2",
+     "Item 3",
      bulmaContainer(
-       bulmaTitle("Item 2"),
-       plotOutput("hist")
+       bulmaTitle("Item 3")
      )
    )
   ),
@@ -102,7 +131,15 @@ shinyApp(
     output$plot <- renderPlot({
       plot(1:20, rnorm(20, 20))
     })
+    
+    output$plot2 <- renderPlot({
+      plot(1:20, rnorm(20, 20))
+    })
   }
 )
+}
 
+}
+\author{
+John Coene, \email{jcoenep@gmail.com}
 }

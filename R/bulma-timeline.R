@@ -7,15 +7,12 @@
 #' @param ... Slot for bulmaTimelineHeader and bulmaTimelineItem.
 #' @param centered FALSE by default. Whether to center the timeline.
 #' @param rtl FALSE by default. If rtl is TRUE, the timeline is displayed
-#' right to left. If FALSE (and if centered is FALSE), the timeline is displayed
+#' right to left. If \code{FALSE} (and if centered is \code{FALSE}), the timeline is displayed
 #' left to right (by default).
 #'
 #' @note known problem: when centered is TRUE, lines cannot be colored.
 #'
-#' @export
-#'
 #' @examples
-#' \dontrun{
 #' if (interactive()) {
 #'  library(shiny)
 #'
@@ -28,19 +25,22 @@
 #'     bulmaTimelineItem(
 #'       color = "primary", marker_color = "primary",
 #'       marker_image = FALSE, marker_icon = FALSE,
-#'       content_header = "January 2016", content_body = "Timeline content - Can include any HTML element"
+#'       content_header = "January 2016",
+#'       content_body = "Timeline content - Can include any HTML element"
 #'     ),
 #'     bulmaTimelineItem(
 #'       color = "warning", marker_color = "warning",
 #'       marker_image = TRUE, marker_image_size = "32x32", marker_icon = FALSE,
-#'       content_header = "February 2016", content_body = "Timeline content - Can include any HTML element",
+#'       content_header = "February 2016",
+#'       content_body = "Timeline content - Can include any HTML element",
 #'       tags$img(src = "http://bulma.io/images/placeholders/32x32.png")
 #'     ),
 #'     bulmaTimelineHeader(text = "2017", size = NULL, color = "primary"),
 #'     bulmaTimelineItem(
 #'       color = "danger", marker_color = "danger",
 #'       marker_image = FALSE, marker_icon = TRUE,
-#'       content_header = "March 2016", content_body = "Timeline content - Can include any HTML element",
+#'       content_header = "March 2016",
+#'       content_body = "Timeline content - Can include any HTML element",
 #'       tags$i(class = "fa fa-flag")
 #'     ),
 #'     bulmaTimelineHeader(text = "End", size = "medium", color = "primary")
@@ -53,10 +53,8 @@
 #'  }
 #'
 #'  shinyApp(ui = ui, server = server)
-#'
 #' }
-#' }
-
+#' @export
 bulmaTimeline <- function(..., centered = FALSE, rtl = FALSE) {
 
   cl <- "timeline"
@@ -83,8 +81,6 @@ bulmaTimeline <- function(..., centered = FALSE, rtl = FALSE) {
 #' @note you can insert any number of headers.
 #'
 #' @export
-#'
-
 bulmaTimelineHeader <- function(text = NULL, size = NULL, color = NULL) {
 
   cl <- "tag"
@@ -138,8 +134,6 @@ bulmaTimelineHeader <- function(text = NULL, size = NULL, color = NULL) {
 #' }
 #'
 #' @export
-#'
-
 bulmaTimelineItem <- function(..., color = NULL, marker_color = NULL,
                               marker_image = FALSE, marker_image_size = NULL,
                               marker_icon = FALSE, content_header = NULL,

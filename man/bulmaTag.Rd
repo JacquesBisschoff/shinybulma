@@ -20,7 +20,6 @@ bulmaTag(label = NULL, color = NULL, size = NULL, style = NULL)
 Create a tag \url{https://bulma.io/documentation/elements/tag/}.
 }
 \examples{
-\dontrun{
 if (interactive()) {
  library(shiny)
 
@@ -92,7 +91,6 @@ if (interactive()) {
 
  shinyApp(ui = ui, server = server)
 
-}
 }
 }
 \author{

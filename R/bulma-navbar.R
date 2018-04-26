@@ -3,16 +3,23 @@
 #' Add a responsive horizontal navbar.
 #'
 #' @inheritParams bulmaPage
+#' @param transparent set to have transparent.
+#' @param color navbar color.
+#' @param fix.top,fix.bottom set one to have navbar fixed at top or bottom of page.
+#' @param label item label.
+#' @param href,target id of \code{bulmaNav} linked, \code{href} and \code{target} must be identical.
 #'
 #' @examples
+#' if(interactive()){
 #' library(shiny)
-#'
 #' shinyApp(
 #'   ui = bulmaPage(
 #'    bulmaNavbar(
+#'      color = "primary",
 #'      bulmaNavbarBrand(
 #'        bulmaNavbarItem(
-#'          "shinybulma"
+#'          "shinybulma",
+#'          href = "Item 1"
 #'        ),
 #'        bulmaNavbarBurger()
 #'      ),
@@ -23,21 +30,39 @@
 #'        bulmaNavbarItem(
 #'          "Item 2"
 #'        ),
-#'      bulmaNavbarDropdown(
-#'        label = "Drop-down",
 #'        bulmaNavbarItem(
-#'          "Select 1"
-#'        ),
-#'        bulmaNavbarItem(
-#'          "Select 2"
+#'          "Item 3"
 #'        )
-#'      )
 #'     )
 #'    ),
 #'    bulmaNav(
 #'      "Item 1",
 #'      bulmaContainer(
 #'        bulmaTitle("Item 1"),
+#'        bulmaTabs(
+#'        tabs = c("Tab 1", "Tab 2", "Tab 3"),
+#'        center = TRUE,
+#'          bulmaTab(
+#'            "Tab 1",
+#'            bulmaTitle("Tab 1")
+#'          ),
+#'          bulmaTab(
+#'            "Tab 2",
+#'            bulmaTitle("Tab 2"),
+#'            plotOutput("hist")
+#'          ),
+#'          bulmaTab(
+#'            "Tab 3",
+#'            bulmaTitle("Tab 3")
+#'          )
+#'        )
+#'      )
+#'    ),
+#'    bulmaNav(
+#'      "Item 2",
+#'      bulmaContainer(
+#'        bulmaTitle("Item 2"),
+#'        plotOutput("plot2"),
 #'        bulmaTabs(
 #'        tabs = c("Tab 1", "Tab 2", "Tab 3"),
 #'        center = TRUE,
@@ -58,10 +83,9 @@
 #'      )
 #'    ),
 #'    bulmaNav(
-#'      "Item 2",
+#'      "Item 3",
 #'      bulmaContainer(
-#'        bulmaTitle("Item 2"),
-#'        plotOutput("hist")
+#'        bulmaTitle("Item 3")
 #'      )
 #'    )
 #'   ),
@@ -72,9 +96,15 @@
 #'     output$plot <- renderPlot({
 #'       plot(1:20, rnorm(20, 20))
 #'     })
+#'     
+#'     output$plot2 <- renderPlot({
+#'       plot(1:20, rnorm(20, 20))
+#'     })
 #'   }
 #' )
+#' }
 #'
+#' @author John Coene, \email{jcoenep@@gmail.com}
 #' @rdname navbar
 #' @export
 bulmaNavbar <- function(..., transparent = FALSE, color = NULL, fix.top = FALSE, fix.bottom = FALSE){
@@ -144,32 +174,12 @@ bulmaNavbarItem <- function(label, href = NULL){
     href <- paste0("#", href)
   }
 
-  id <- gsub("[[:space:]]|[[:cntrl:]]|[[:punct:]]", "-", label)
-  id <- paste0(id, "button")
-
-
-  item <- shiny::tags$a(
-    id = id,
+  fct <- paste0("showHide('", href, "')") # bulma-nav-js.js
+  
+  shiny::tags$a(
     class = "navbar-item",
-    href = href,
+    onclick = fct,
     label
-  )
-
-  shiny::tagList(
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::tags$script(
-          paste0('$(document).ready(function(){
-                 $("#', id,'").click(function(){
-                     $("', href,'").show().siblings("div").hide();
-                     $("', href,'").addClass("active");
-                     $("', href,'").css( "display", "block" );
-                 })
-                ;});')
-        )
-      )
-    ),
-    item
   )
 
 }
@@ -187,13 +197,26 @@ bulmaNavbarLink <- function(label, href = ""){
 #' @rdname navbar
 #' @export
 bulmaNavbarBurger <- function(){
-  shiny::tags$button(
+
+  burger <- shiny::tags$button(
     class = "button navbar-burger",
     `data-target` = "navMenu",
     shiny::tags$span(),
     shiny::tags$span(),
     shiny::tags$span()
   )
+
+  shiny::tagList(
+    shiny::singleton(
+      shiny::tags$head(
+        shiny::includeScript(
+          system.file(file.path("js", "bulma-burger-js.js"), package = "shinybulma")
+        )
+      )
+    ),
+    burger
+  )
+
 }
 
 #' @rdname navbar
@@ -221,8 +244,8 @@ bulmaNav <- function(target, ...){
 
   shiny::tags$div(
     id = target,
+    style = "display: none;", # plots do not render
     class = "navTab",
-    style = "display:none",
     ...
   )
 }

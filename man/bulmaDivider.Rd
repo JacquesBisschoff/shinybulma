@@ -15,10 +15,10 @@ bulmaDivider(content = NULL, vertical = FALSE)
 Create a vertical or horizontal divider \url{https://wikiki.github.io/layout/divider/}.
 }
 \note{
-If vertical is TRUE, you need to wrap the divider in a bulmaColumns() configuration. See example below.
+If vertical is TRUE, you need to wrap the divider in a \code{\link{bulmaColumns}} configuration.
+See example below.
 }
 \examples{
-\dontrun{
 if (interactive()) {
  library(shiny)
 
@@ -51,7 +51,6 @@ if (interactive()) {
 
  shinyApp(ui = ui, server = server)
 
-}
 }
 }
 \author{

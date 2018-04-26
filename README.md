@@ -1,7 +1,10 @@
 # shinybulma
 
-[bulma.io](https://bulma.io) for [Shiny](https://shiny.rstudio.com/). Contains
-also some extensions: [bulma-extensions](https://wikiki.github.io)
+[![Travis-CI Build Status](https://travis-ci.org/JohnCoene/shinybulma.svg?branch=master)](https://travis-ci.org/JohnCoene/shinybulma) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/JohnCoene/shinybulma?branch=master&svg=true)](https://ci.appveyor.com/project/JohnCoene/shinybulma)
+
+![](https://bulma.io/images/made-with-bulma.png)
+
+[bulma.io](https://bulma.io) for [Shiny](https://shiny.rstudio.com/). Contains extensions: [bulma-extensions](https://wikiki.github.io) as well as [themes](https://jenil.github.io/bulmaswatch/).
 
 ## Installation
 
@@ -18,11 +21,11 @@ library(shiny)
 shinyApp(
   ui = bulmaPage(
   bulmaHero(
-  	  fullheight = TRUE,
+    fullheight = TRUE,
 	  color = "primary",
 	  bulmaHeroBody(
-	  	  bulmaContainer(
-		  	  bulmaTitle("Shiny meets Bulma!"),
+	    bulmaContainer(
+		    bulmaTitle("Shiny meets Bulma!"),
 			  bulmaSubtitle("A neat framework for your Shiny apps.")
 		  )
 	  )
@@ -32,30 +35,30 @@ shinyApp(
 	  	  bulmaTileAncestor(
 		  	  bulmaTileParent(
 			  	  vertical = TRUE,
-				  bulmaTileChild(
+				    bulmaTileChild(
 				  	  bulmaTitle("Tile 1"),
-					  p("Put some data here"),
-					  color = "link"
-				  ),
-				  bulmaTileChild(
+					    p("Put some data here"),
+					    color = "link"
+				    ),
+				    bulmaTileChild(
 				  	  bulmaTitle("Tile 2"),
-					  plotOutput("chart"),
-					  color = "danger"
-				  )
-			  ),
+					    plotOutput("chart"),
+					    color = "danger"
+				    )
+			    ),
 		  	  bulmaTileParent(
 			  	  vertical = TRUE,
-				  bulmaTileChild(
+				    bulmaTileChild(
 				  	  bulmaTitle("Tile 3"),
-					  p("Put some data here"),
-					  color = "warning"
-				  ),
-				  bulmaTileChild(
+					    p("Put some data here"),
+					    color = "warning"
+				    ),
+				    bulmaTileChild(
 				  	  bulmaTitle("Tile 3"),
-					  ("Put some data here"),
-					  color = "info"
-				  )
-			  )
+					    ("Put some data here"),
+					    color = "info"
+				    )
+			    )
 		  )
 	  )
   )
@@ -74,7 +77,7 @@ server <- function(input, output) {}
 shinyApp(ui, server)
 ```
 
-## bulma extension demo
+## Extensions demo
 
 https://dgranjon.shinyapps.io/bulmaExtension/
 

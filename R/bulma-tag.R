@@ -10,10 +10,7 @@
 #' @param size Tag size : \code{small},\code{medium} and \code{large}.
 #' @param style Tag style :  \code{rounded} or \code{delete}. NULL by default.
 #'
-#' @export
-#'
 #' @examples
-#' \dontrun{
 #' if (interactive()) {
 #'  library(shiny)
 #'
@@ -86,8 +83,7 @@
 #'  shinyApp(ui = ui, server = server)
 #'
 #' }
-#' }
-
+#' @export
 bulmaTag <- function(label = NULL, color = NULL, size = NULL, style = NULL) {
   cl <- "tag"
   if (!is.null(color)) cl <- paste0(cl, " is-", color)
@@ -110,18 +106,12 @@ bulmaTag <- function(label = NULL, color = NULL, size = NULL, style = NULL) {
 #' @param ... Slot for bulmaTag.
 #'
 #' @export
-#'
-
 bulmaTagList <- function(...) {
   shiny::tags$div(
     class = "tags",
     ...
   )
 }
-
-############ tagAddons ############
-
-
 
 #' @title bulma tag addon
 #'
@@ -130,8 +120,6 @@ bulmaTagList <- function(...) {
 #' @param ... Slot for 2 bulmaTag.
 #'
 #' @export
-#'
-
 bulmaTagAddon <- function(...) {
   shiny::tags$div(
     class = "tags has-addons",
@@ -142,13 +130,12 @@ bulmaTagAddon <- function(...) {
 
 #' @title bulma tag addon vertical list
 #'
-#' @description Create a vertical list of bulmaTagAddon objects \url{https://bulma.io/documentation/elements/tag/}.
+#' @description Create a vertical list of bulmaTagAddon objects
+#' \url{https://bulma.io/documentation/elements/tag/}.
 #'
 #' @param ... Slot for bulmaTagAddon.
 #'
 #' @export
-#'
-
 bulmaTagAddons <- function(...) {
   shiny::tags$div(
     class = "control",
@@ -159,13 +146,12 @@ bulmaTagAddons <- function(...) {
 
 #' @title bulma tag addon horizontal list.
 #'
-#' @description Create an horizontal list of bulmaTagAddons objects \url{https://bulma.io/documentation/elements/tag/}.
+#' @description Create an horizontal list of bulmaTagAddons objects
+#' \url{https://bulma.io/documentation/elements/tag/}.
 #'
 #' @param ... Slot for bulmaTagAddons.
 #'
 #' @export
-#'
-
 bulmaTagAddonList <- function(...) {
   shiny::tags$div(
     class = "field is-grouped is-grouped-multiline",

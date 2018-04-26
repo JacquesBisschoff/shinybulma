@@ -17,7 +17,8 @@ bulmaBadge(..., color = NULL, size = NULL, style = NULL,
 
 \item{style}{Badge style :  \code{outlined}. NULL by default}
 
-\item{position}{Badge position : \code{left}, \code{bottom-left} and \code{bottom}. When NULL, it is displayed on the right side by default.}
+\item{position}{Badge position : \code{left}, \code{bottom-left} and \code{bottom}.
+When \code{NULL}, it is displayed on the right side by default.}
 
 \item{badge_text}{Badge content : avoid too large content (a number is better).}
 }
@@ -25,7 +26,6 @@ bulmaBadge(..., color = NULL, size = NULL, style = NULL,
 Create a badge to highlight a given element \url{https://wikiki.github.io/elements/badge/}.
 }
 \examples{
-\dontrun{
 if (interactive()) {
  library(shiny)
 
@@ -147,14 +147,11 @@ if (interactive()) {
   )
  )
 
- server <- function(input, output, session) {
-
- }
+ server <- function(input, output, session) {}
 
  shinyApp(ui = ui, server = server)
+}
 
-}
-}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

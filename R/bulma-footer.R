@@ -1,9 +1,13 @@
 #' Add a footer
 #'
+#' Add footer
+#'
 #' @inheritParams bulmaPage
+#' @param container set to \code{TRUE} to wrap in \code{\link{bulmaContainer}}.
 #' @param centered wheter to center the text.
 #'
 #' @examples
+#' if(interactive()){
 #' library(shiny)
 #'
 #' ui <- bulmaPage(
@@ -33,7 +37,9 @@
 #' server <- function(input, output){}
 #'
 #' shinyApp(ui, server)
-#'
+#' }
+#' 
+#' @author John Coene, \email{jcoenep@@gmail.com}
 #' @export
 bulmaFooter <- function(..., container = TRUE, centered = TRUE){
 
@@ -43,7 +49,7 @@ bulmaFooter <- function(..., container = TRUE, centered = TRUE){
 
   shiny::tags$footer(
     if(isTRUE(container)){
-      tags$div(
+      shiny::tags$div(
         class = "container",
         shiny::tags$div(
           class = cl,

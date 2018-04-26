@@ -3,11 +3,13 @@
 #' Build a bulma Shiny app.
 #'
 #' @param ... any element.
+#' @param theme a theme.
 #'
 #' @examples
+#' if(interactive()){
 #' library(shiny)
-#'
-#' shinyApp(
+#' 
+#' shiny::shinyApp(
 #'   ui = bulmaNavbarPage(
 #'    bulmaNavbar(
 #'      bulmaNavbarBrand(
@@ -45,107 +47,60 @@
 #'   ),
 #'   server = function(input, output) {}
 #' )
+#' }
 #'
 #' @rdname page
 #' @export
-bulmaPage <- function(...){
+bulmaPage <- function(..., theme = "default"){
+  
+  if(!theme %in% bulma_themes())
+    stop("wrong theme", call. = FALSE)
 
-  shiny::tags$html(
+  shiny::tagList(
     # Head --------------------------------------------------------------------
-    id = "shinybulma-html",
     shiny::tags$head(
-      shiny::tags$meta(
-        charset = "utf-8"
+      shiny::tags$meta(charset = "utf-8"),
+      shiny::tags$meta(name = "viewport", content = "width=device-width, initial-scale=1"),
+      shiny::tags$link(
+        rel = "stylesheet", 
+        href = "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       ),
-      shiny::tags$meta(
-        name = "viewport",
-        content = "width=device-width, initial-scale=1"
+      shiny::tags$script(
+        `defer` = NA,
+        src = "https://use.fontawesome.com/releases/v5.0.7/js/all.js"
+      ),
+      shiny::includeCSS(
+        system.file("css", "bulma.min.css", package = "shinybulma")
+      ),
+      shiny::includeCSS(
+        system.file("css", "bulma-tooltip.min.css", package = "shinybulma")
+      ),
+      shiny::includeCSS(
+        system.file("css", "bulma-extensions.min.css", package = "shinybulma")
       ),
       shiny::tags$link(
         rel = "stylesheet",
-        href = "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      ),
-      shiny::includeCSS(
-        system.file("css/bulma.min.css", package = "shinybulma")
-      ),
-      shiny::includeCSS(
-        system.file("css/bulma-extensions.min.css", package = "shinybulma")
+        text = "text/css",
+        href = paste0("bulmathemes/css/", tolower(theme), ".min.css")
       ),
       shiny::includeScript(
-        system.file("js/jquery.min.js", package = "shinybulma")
+        system.file("js", "jquery-ui.min.js", package = "shinybulma")
       ),
       shiny::includeScript(
-        system.file("js/jquery-ui.min.js", package = "shinybulma")
+        system.file("js", "bulma-carousel.min.js", package = "shinybulma")
       ),
       shiny::includeScript(
-        system.file("js/bulma-carousel.min.js", package = "shinybulma")
+        system.file("js", "bulma-steps.min.js", package = "shinybulma")
       ),
       shiny::includeScript(
-        system.file("js/bulma-steps.min.js", package = "shinybulma")
+        system.file("js", "custom-js.js", package = "shinybulma")
       )
     ),
     # Body --------------------------------------------------------------------
-    shiny::tags$body(
-      ...,
-      shiny::includeScript(
-        system.file("js/custom-js.js",
-                    package = "shinybulma")
-      )
-    )
+    ...
   )
 }
 
 #' @rdname page
 #' @export
-bulmaNavbarPage <- function(...){
-
-  div <- shiny::tags$div(
-    class = "bulmaNavBarContainer",
-    ...
-  )
-
-  shiny::tags$html(
-    # Head --------------------------------------------------------------------
-    id = "shinybulma-html",
-    shiny::tags$head(
-      shiny::tags$meta(
-        charset = "utf-8"
-      ),
-      shiny::tags$meta(
-        name = "viewport",
-        content = "width=device-width, initial-scale=1"
-      ),
-      shiny::tags$link(
-        rel = "stylesheet",
-        href = "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      ),
-      shiny::includeCSS(
-        system.file("css/bulma.min.css", package = "shinybulma")
-      ),
-      shiny::includeCSS(
-        system.file("css/bulma-extensions.min.css", package = "shinybulma")
-      ),
-      shiny::includeScript(
-        system.file("js/jquery.min.js", package = "shinybulma")
-      ),
-      shiny::includeScript(
-        system.file("js/jquery-ui.min.js", package = "shinybulma")
-      ),
-      shiny::includeScript(
-        system.file("js/bulma-carousel.min.js", package = "shinybulma")
-      ),
-      shiny::includeScript(
-        system.file("js/bulma-steps.min.js", package = "shinybulma")
-      )
-    ),
-    # Body --------------------------------------------------------------------
-    shiny::tags$body(
-      div,
-      shiny::includeScript(
-        system.file("js/custom-js.js",
-                    package = "shinybulma")
-      )
-    )
-  )
-}
-
+bulmaNavbarPage <- bulmaPage

@@ -6,6 +6,7 @@
 #' @param tag html tag.
 #'
 #' @examples
+#' if(interactive()){
 #' library(shiny)
 #'
 #' shinyApp(
@@ -35,6 +36,9 @@
 #'   ),
 #'   server = function(input, output) {}
 #' )
+#' }
+#'
+#' @author John Coene, \email{jcoenep@@ymail.com}
 #'
 #' @rdname card
 #' @export

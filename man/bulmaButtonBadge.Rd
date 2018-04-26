@@ -29,15 +29,15 @@ bulmaButtonBadge(label = NULL, url = NULL, color = NULL, style = NULL,
 
 \item{badge_size}{Size of the button : \code{small},\code{medium} and \code{large}.}
 
-\item{badge_position}{Position of the badge : \code{left}, \code{bottom-left} and \code{bottom}. Right by default.}
+\item{badge_position}{Position of the badge : \code{left}, \code{bottom-left} and \code{bottom}.
+Right by default.}
 
-\item{badge_text}{Badge content : avoid too large content (a number is better).}
+\item{badge_text}{Badge content: avoid too large content (a number is better).}
 }
 \description{
 Create a button with a badge \url{https://wikiki.github.io/elements/badge/}.
 }
 \examples{
-\dontrun{
 if (interactive()) {
  library(shiny)
 
@@ -107,7 +107,7 @@ if (interactive()) {
  shinyApp(ui = ui, server = server)
 
 }
-}
+
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

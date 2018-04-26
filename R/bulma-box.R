@@ -8,10 +8,7 @@
 #'
 #' @note It is lighter than a bulmaCard element.
 #'
-#' @export
-#'
 #' @examples
-#' \dontrun{
 #' if (interactive()) {
 #'  library(shiny)
 #'
@@ -43,10 +40,9 @@
 #'  }
 #'
 #'  shinyApp(ui = ui, server = server)
-#'
 #' }
-#' }
-
+#' 
+#' @export
 bulmaBox <- function(...) {
   shiny::tags$div(
     class = "box",
@@ -56,9 +52,6 @@ bulmaBox <- function(...) {
     )
   )
 }
-
-
-
 
 #' @title bulma Box media.
 #'
@@ -80,13 +73,9 @@ bulmaBox <- function(...) {
 #'   \item{128 - 128x128}
 #' }
 #'
-#' @rdname box
 #' @export
-#'
-
-
 bulmaBoxMedia <- function(..., src = NULL, size = "64x64") {
-  tagList(
+  shiny::tagList(
     # media left
     shiny::tags$div(
       class = "media-left",

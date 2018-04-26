@@ -3,9 +3,14 @@
 #' Add levels
 #'
 #' @inheritParams bulmaPage
+#' @param heading level heading.
+#' @param value level value.
+#' @param centered whether to center to level.
+#' @param outputId id of output.
 #' @param mobile set to \code{TRUE} if you want the level to be horizontal on mobile.
 #'
 #' @examples
+#' if(interactive()){
 #' library(shiny)
 #'
 #' shinyApp(
@@ -27,7 +32,9 @@
 #'     })
 #'   }
 #' )
+#' }
 #'
+#' @author John Coene, \email{jcoenep@@gmail.com}
 #' @rdname level
 #' @export
 bulmaLevel <- function(..., mobile = FALSE){
@@ -56,11 +63,11 @@ bulmaLevelItem <- function(heading, value, centered = TRUE){
   shiny::tags$div(
     class = cl,
     shiny::tags$div(
-      tags$p(
+      shiny::tags$p(
         class = "heading",
         heading
       ),
-      tags$p(
+      shiny::tags$p(
         class = "title",
         value
       )

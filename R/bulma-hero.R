@@ -9,6 +9,7 @@
 #' @param fullheight set to \code{TRUE} to set hero to \code{100vh}.
 #'
 #' @examples
+#' if(interactive()){
 #' library(shiny)
 #'
 #' ui <- bulmaPage(
@@ -27,7 +28,9 @@
 #' server <- function(input, output){}
 #'
 #' shinyApp(ui, server)
-#'
+#' }
+#' 
+#' @author John Coene, \email{jcoenep@@gmail.com}
 #' @rdname hero
 #' @export
 bulmaHero <- function(..., color = NULL, size = NULL, bold = FALSE,

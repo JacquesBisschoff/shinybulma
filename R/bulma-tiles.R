@@ -3,10 +3,13 @@
 #' Add masonry-like tiles.
 #'
 #' @inheritParams bulmaPage
+#' @param title,subtitle tile title and subtitle.
+#' @param color color of tile.
 #' @param vertical set to \code{TRUE} if you want to stack tiles vertically.
 #' @param width define width of tile.
 #'
 #' @examples
+#' if(interactive()){
 #' library(shiny)
 #'
 #' shinyApp(
@@ -46,8 +49,9 @@
 #'     })
 #'   }
 #' )
+#' }
 #'
-#'
+#' @author John Coene, \email{jcoenep@@gmail.com}
 #' @rdname tiles
 #' @export
 bulmaTileAncestor <- function(...){
@@ -82,11 +86,11 @@ bulmaTileChild <- function(..., title = "", subtitle = "", color = NULL){
 
   shiny::tags$article(
     class = cl,
-    tags$p(
+    shiny::tags$p(
       title,
       class = "title"
     ),
-    tags$p(
+    shiny::tags$p(
       subtitle,
       class = "subtitle"
     ),

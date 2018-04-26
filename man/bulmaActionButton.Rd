@@ -2,7 +2,7 @@
 % Please edit documentation in R/bulma-input.R
 \name{bulmaActionButton}
 \alias{bulmaActionButton}
-\title{Add submit button}
+\title{Add action button}
 \usage{
 bulmaActionButton(inputId, label, color = NULL)
 }
@@ -14,21 +14,22 @@ bulmaActionButton(inputId, label, color = NULL)
 \item{color}{button color.}
 }
 \description{
-Add submit button
+Add an action button.
 }
 \examples{
-library(shiny)
-
-shinyApp(
+if(interactive()){
+shiny::shinyApp(
   ui = bulmaPage(
-    bulmaActionButton("go", "Go")
+    bulmaActionButton("goButton", "Render in console")
   ),
-  server = function(input, output, session) {
-    observeEvent(input$go, {
-      print(paste("This will only be printed once; all",
-        "subsequent button clicks won't do anything"))
-    }, once = TRUE)
+  server = function(input, output) {
+    observeEvent(input$goButton, {
+      print("button clicked")
+    })
  }
 )
-
+}
+}
+\author{
+John Coene, \email{jcoenep@gmail.com}
 }

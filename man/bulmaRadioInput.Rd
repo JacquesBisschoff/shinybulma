@@ -14,9 +14,10 @@ bulmaRadioInput(inputId, choices, selected)
 \item{selected}{selected radio input.}
 }
 \description{
-Add radio buttons
+Add radio buttons.
 }
 \examples{
+if(interactive()){
 library(shiny)
 
 shinyApp(
@@ -24,13 +25,16 @@ shinyApp(
    bulmaTitle("Hello Bulma"),
    bulmaRadioInput("select", c("Miles per galon" = "mpg", "Rear axle ratio" = "drat"),
      selected = "mpg"),
-   plotOutput("plot")
+   plotOutput("value")
   ),
   server = function(input, output) {
-    output$plot <- renderPlot(
+    output$value <- renderPlot(
       plot(1:nrow(mtcars), mtcars[[input$select]])
     )
   }
 )
-
+}
+}
+\author{
+John Coene, \email{jcoenep@gmail.com}
 }

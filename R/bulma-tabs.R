@@ -1,6 +1,14 @@
 #' Add tabs
 #'
+#' Add tabs
+#'
+#' @inheritParams bulmaPage
+#' @param tabs \code{bulmaTab} elements.
+#' @param center set to center.
+#' @param label label of tab.
+#'
 #' @examples
+#' if(interactive()){
 #' library(shiny)
 #'
 #' shinyApp(
@@ -35,7 +43,9 @@
 #'     })
 #'   }
 #' )
+#' }
 #'
+#' @author John Coene, \email{jcoenep@@gmail.com}
 #' @rdname tabs
 #' @export
 bulmaTabs <- function(tabs, center = FALSE, ...){
@@ -75,8 +85,6 @@ bulmaTabs <- function(tabs, center = FALSE, ...){
   )
 }
 
-#' Add tab
-#'
 #' @rdname tabs
 #' @export
 bulmaTab <- function(label, ...){

@@ -9,13 +9,12 @@ bulmaSteps(..., size = NULL)
 \arguments{
 \item{...}{Slot for bulmaStepItem.}
 
-\item{size}{Global size : \code{small},\code{medium} and \code{large}.}
+\item{size}{Global size : \code{small}, \code{medium} and \code{large}.}
 }
 \description{
 Create a step element \url{https://wikiki.github.io/components/steps/}.
 }
 \examples{
-\dontrun{
 if (interactive()) {
  library(shiny)
 
@@ -62,7 +61,7 @@ if (interactive()) {
  shinyApp(ui = ui, server = server)
 
 }
-}
+
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
