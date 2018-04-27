@@ -7,6 +7,7 @@
 #' @param color color of tile.
 #' @param vertical set to \code{TRUE} if you want to stack tiles vertically.
 #' @param width define width of tile.
+#' @param type type of the tile: notification or box.
 #'
 #' @examples
 #' if(interactive()){
@@ -78,11 +79,12 @@ bulmaTileParent <- function(..., vertical = FALSE, width = NULL){
 
 #' @rdname tiles
 #' @export
-bulmaTileChild <- function(..., title = "", subtitle = "", color = NULL){
+bulmaTileChild <- function(..., title = "", subtitle = "", color = NULL,
+                           type = "box"){
 
-  cl <- "tile is-child notification"
+  cl <- paste0("tile is-child ", type)
 
-  if(!is.null(color)) cl <- paste0(cl, " is-", color)
+  if (!is.null(color)) cl <- paste0(cl, " is-", color)
 
   shiny::tags$article(
     class = cl,
